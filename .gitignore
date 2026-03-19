@@ -1,0 +1,45 @@
+## [Visual Studio]
+.vs/
+[Bb]in/
+[Oo]bj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+## [Visual Studio Code]
+.vscode/
+.history/
+*.log
+
+## [Runtime]
+*.db
+*.db-shm
+*.db-wal
+
+## [User-specific files]
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+## [Build results]
+[Bb]in/
+[Oo]bj/
+[Tt]est[Rr]esult*/
+
+## [NuGet]
+packages/
+*.nupkg
+project.lock.json
+project.assets.json
+
+## [Publish]
+publish/
+*.pubxml
+*.pubxml.user
+
+## [Temporary files]
+*.tmp
+*.log

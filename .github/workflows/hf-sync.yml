@@ -1,0 +1,28 @@
+name: Sync to Hugging Face
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  sync-to-hub:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      repository-projects: write
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          lfs: true
+      - name: Update GitHub Repository Metadata
+        run: |
+          gh repo edit --description "🔐 VaultVerify: Advanced Password Recovery & Identity Simulation Engine" --homepage "https://huggingface.co/spaces/maviyamustahsin/VaultVerify"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Push to Hugging Face Hub
+        uses: huggingface/github-action@v1
+        with:
+          username: maviyamustahsin
+          space: VaultVerify
+          hf_token: ${{ secrets.HF_TOKEN }}

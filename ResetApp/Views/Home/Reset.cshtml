@@ -1,0 +1,53 @@
+<div class="auth-card">
+    <div class="security-tag">Security Update</div>
+    <div class="vv-logo">
+        <div class="vv-logo-square">V</div>
+        <div class="vv-logo-text">VaultVerify</div>
+    </div>
+
+    <h2>Create New Password</h2>
+    <p>Please enter a strong new password for your account.</p>
+
+    @if (ViewBag.Message != null)
+    {
+        <div class="alert-vv">@ViewBag.Message</div>
+    }
+
+    <form method="post">
+        <input type="hidden" name="email" value="@ViewBag.Email" />
+        <div class="input-group">
+            <input type="password" name="password" id="password" placeholder="New Password" required />
+            <input type="password" name="confirm" placeholder="Confirm Password" style="margin-top: 15px;" required />
+        </div>
+
+        <div id="strength" style="font-size: 13px; font-weight: 700; margin-bottom: 24px;">Password Strength: Not set</div>
+
+        <button type="submit" class="btn-vv">Update Security</button>
+    </form>
+</div>
+
+<script>
+    const passwordInput = document.getElementById("password");
+    const strengthText = document.getElementById("strength");
+
+    passwordInput.addEventListener("input", function () {
+        const value = passwordInput.value;
+        let strength = "Too weak";
+        let color = "#ef4444";
+
+        if (value.length >= 8 && /[A-Z]/.test(value) && /\d/.test(value)) {
+            strength = "Optimized";
+            color = "#10b981";
+        } else if (value.length >= 6) {
+            strength = "Fair";
+            color = "#f59e0b";
+        }
+
+        strengthText.textContent = "Security Level: " + strength;
+        strengthText.style.color = color;
+    });
+</script>
+
+<div style="margin-top: 24px; text-align: center; font-size: 13px; color: rgba(255,255,255,0.4);">
+    © 2026 VaultVerify Systems
+</div>

@@ -1,0 +1,50 @@
+<div class="auth-card">
+    <div class="security-badge">Protected by VaultVerify</div>
+    <img src="https://logincdn.msauth.net/shared/1.0/content/images/microsoft_logo_ee5c8d9fb6248c938fd0dc19370e90bd.svg" class="brand-logo-ms" alt="Microsoft" />
+    
+    <h2>Create account</h2>
+    <p>Sign up with your email to access the VaultVerify security features.</p>
+
+    @if (ViewBag.Message != null)
+    {
+        <div class="alert-ms">@ViewBag.Message</div>
+    }
+
+    <form method="post">
+        <input type="email" name="email" placeholder="someone@example.com" required />
+        <input type="password" id="password" name="password" placeholder="Create password" required />
+        
+        <div id="strength" class="timer" style="margin-bottom: 24px; font-weight: 500;">Strength: Not entered</div>
+
+        <div style="margin-top: 20px; display: flex; justify-content: flex-end;">
+            <button onclick="location.href='@Url.Action("Login")'" type="button" class="btn-secondary-ms" style="margin-right: 15px;">Sign in instead</button>
+            <button type="submit" class="btn-ms">Next</button>
+        </div>
+    </form>
+</div>
+
+<script>
+    const passwordInput = document.getElementById("password");
+    const strengthText = document.getElementById("strength");
+
+    passwordInput.addEventListener("input", function () {
+        const value = passwordInput.value;
+        let strength = "Too short";
+        let color = "#a4262c";
+
+        if (value.length >= 8 && /[A-Z]/.test(value) && /\d/.test(value)) {
+            strength = "Strong";
+            color = "#107c10";
+        } else if (value.length >= 6) {
+            strength = "Medium";
+            color = "#ffb900";
+        }
+
+        strengthText.textContent = "Strength: " + strength;
+        strengthText.style.color = color;
+    });
+</script>
+
+<div style="margin-top: 20px; font-size: 12px; color: #616161;">
+    Terms of use &nbsp; Privacy & cookies &nbsp; ...
+</div>

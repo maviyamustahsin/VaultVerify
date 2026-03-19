@@ -1,0 +1,32 @@
+<div class="auth-card">
+    <div class="security-tag">Protected</div>
+    <div class="vv-logo">
+        <div class="vv-logo-square">V</div>
+        <div class="vv-logo-text">VaultVerify</div>
+    </div>
+
+    <h2>Sign in</h2>
+    <p>Sign in to manage your secure identity vault.</p>
+
+    @if (ViewBag.Message != null)
+    {
+        <div class="alert-vv">@ViewBag.Message</div>
+    }
+
+    <form method="post">
+        <div class="input-group">
+            <input type="email" name="email" placeholder="Email" required />
+            <input type="password" name="password" placeholder="Password" style="margin-top: 15px;" required />
+        </div>
+        
+        <p style="font-size: 14px; margin-bottom: 24px;">
+            Forgot password? <a href="/Home/Identify" class="btn-link">Recover now</a>
+        </p>
+
+        <button type="submit" class="btn-vv">Sign in</button>
+    </form>
+</div>
+
+<div style="margin-top: 24px; text-align: center; font-size: 13px; color: rgba(255,255,255,0.4);">
+    © 2026 VaultVerify Systems
+</div>

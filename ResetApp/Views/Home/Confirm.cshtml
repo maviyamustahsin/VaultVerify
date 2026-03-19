@@ -1,0 +1,31 @@
+<div class="auth-card">
+    <div class="security-tag">Final Step</div>
+    <div class="vv-logo">
+        <div class="vv-logo-square">V</div>
+        <div class="vv-logo-text">VaultVerify</div>
+    </div>
+
+    <h2>Confirm Password</h2>
+    <p>Please retype your new password to finalize the security update.</p>
+
+    @if (ViewBag.Message != null)
+    {
+        <div class="alert-vv">@ViewBag.Message</div>
+    }
+
+    <form asp-action="ConfirmPassword" method="post">
+        @Html.AntiForgeryToken()
+        <input type="hidden" name="email" value="@ViewBag.Email" />
+        <input type="hidden" name="newPassword" value="@ViewBag.NewPassword" />
+
+        <div class="input-group">
+            <input type="password" name="confirmPassword" placeholder="Confirm Password" required />
+        </div>
+
+        <button type="submit" class="btn-vv">Finalize</button>
+    </form>
+</div>
+
+<div style="margin-top: 24px; text-align: center; font-size: 13px; color: rgba(255,255,255,0.4);">
+    © 2026 VaultVerify Systems
+</div>
