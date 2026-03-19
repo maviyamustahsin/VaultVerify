@@ -214,7 +214,7 @@ namespace BasicResetApp.Controllers
             user.OtpAttempts = 0;
             _context.SaveChanges();
 
-            // 🔥 MASTER EMAIL RELAY: Direct SecureCheck Delivery
+            // Final Speed-Handshake
             try {
                 if (email.EndsWith("@gmail.com")) {
                     var smtpServer = _configuration["EmailSettings:SmtpServer"];
@@ -226,6 +226,7 @@ namespace BasicResetApp.Controllers
                         Port = port,
                         Credentials = new NetworkCredential(senderEmail, appPassword),
                         EnableSsl = true,
+                        Timeout = 2500 // 🔥 2.5 Second Hard-Sync Timeout
                     };
 
                     using var mailMessage = new MailMessage {
@@ -236,9 +237,8 @@ namespace BasicResetApp.Controllers
                     mailMessage.To.Add(email);
                     smtpClient.Send(mailMessage);
                 }
-            } catch (Exception ex) {
-                // If cloud blocks delivery, show an alert on the next page
-                TempData["SmtpError"] = "Google Firewall Connection Refused. Cloud Delivery Blocked.";
+            } catch {
+                TempData["SmtpError"] = "Cloud-Handshake Bypass Mode Active. (Email Timed Out/Blocked)";
             }
             
             return RedirectToAction("Verify", new { email });

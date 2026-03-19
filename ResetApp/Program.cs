@@ -80,18 +80,7 @@ using (var scope = app.Services.CreateScope())
         }
     }
 
-    // 🔥 100 BULK TEST USERS
-    for (int i = 1; i <= 100; i++)
-    {
-        string bulkEmail = $"bulkuser{i}@example.com";
-
-        if (!db.Users.Any(u => u.Email == bulkEmail))
-        {
-            var user = new User { Email = bulkEmail };
-            user.Password = hasher.HashPassword(user, "123456");
-            db.Users.Add(user);
-        }
-    }
+    // Seeding skipped for faster cloud booting
 
     db.SaveChanges();
 }
